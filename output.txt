@@ -1,0 +1,42 @@
+code without comments
+__________________________________________________________
+
+
+int main () {
+    int a=1;
+    int b ;                           
+    
+    if(a + 0 ||  b - 1)
+    {                                 
+        printf("a is positive");
+        a = b + 8 * a;
+    }
+
+    for(int i = 0; i < 5; i++)
+    {                    
+        printf("i is %d", i);
+    }
+
+    while (a < b)                            
+    {
+        a = 6;
+        b = 7;
+    }
+  return 0 ;                               
+}
+
+Translate C code To Python Code
+__________________________________________________________
+
+def main():
+    a = 1
+    b = None
+    if a + 0 or b - 1:
+        print("a is positive")
+        a = b
+    for i in range(0, 5):
+        print("i is %d" % i)
+    while a < b:
+        a = 6
+        b = 7
+    return 0
