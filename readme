@@ -4,4 +4,4 @@ translating it into Python, and then parsing the tokens to build a syntax tree. 
 output includes the cleaned C code, translated Python code, and a visual
 representation of the syntax tree.
 
-![plot]https://github.com/omar-k-mourad/translator-and-parser/assets/71342978/ef5c9d7e-3510-4b10-bacc-72e7e58cd4bc
+![plot](https://github.com/omar-k-mourad/translator-and-parser/assets/71342978/ef5c9d7e-3510-4b10-bacc-72e7e58cd4bc)
