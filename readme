@@ -1,7 +1,79 @@
 Overall Purpose:
-The code processes a C program by removing comments, tokenizing the code,
-translating it into Python, and then parsing the tokens to build a syntax tree. The
-output includes the cleaned C code, translated Python code, and a visual
-representation of the syntax tree.
+    The code processes a C program by removing comments, tokenizing the code,
+  translating it into Python, and then parsing the tokens to build a syntax tree. The
+  output includes the cleaned C code, translated Python code, and a visual
+  representation of the syntax tree.
 
-![plot](https://github.com/omar-k-mourad/translator-and-parser/assets/71342978/ef5c9d7e-3510-4b10-bacc-72e7e58cd4bc)
+Function Explanations:
+
+  1. remove_comments(code)
+    • Purpose: Removes single-line (//...) and multi-line (/*...*/) comments
+    from the C code.
+    • How it Works: Uses regular expressions to find and remove comment patterns.
+  
+  2. tokenize(code)
+    Purpose: Converts the cleaned C code into a list of tokens.
+    How it Works: Iterates through the code, matches patterns defined in token_types,
+    and raises an error if an invalid token is encountered
+
+  3. translate_c_to_python(tokens)
+    Purpose: Translates the tokenized C code into equivalent Python code.
+    How it Works: Processes tokens, converts C syntax to Python, handles variable
+    declarations, control structures (like if, for, while), and printf statements.
+  
+  4. TreeNode Class
+    Purpose: Represents nodes in the syntax tree.
+    How it Works: Allows adding child nodes and converting the tree to an NLTK-
+    compatible format for visualization.
+
+  5. Parser Class
+    Purpose: Parses the token list and constructs the syntax tree.
+    How it Works:
+    • Initialization: Takes the token list, tracks the current token and index.
+    • match(token_type, token_value=None): Ensures the current token matches
+    the expected type and value.
+    • main_function(): Parses the main function of the C code.
+    • Other Methods: declaration_list(), statements(), if_statement(),
+    for_statement(), while_statement(), printf_statement(), etc. These methods
+    parse different parts of the code based on context-free grammar rules.
+
+6. Main Execution Flow
+  • Reading Code: Reads the C code from input.txt.
+  • Removing Comments: Cleans the code by removing comments.
+  • Tokenizing Code: Converts the cleaned code into tokens.
+  • Translating to Python: Translates the tokens into Python code.
+  • Parsing Tokens: Builds a syntax tree from the tokens using the Parser class.
+  • Output: Writes the cleaned C code, translated Python code, and syntax tree to
+  output.txt.
+
+# Used CFG :
+
+main_function → decliration_list statements
+declaration_list → decliration
+statements → statment statments | empty
+PAGE 3declaration → variable_declaration ;
+variable_declaration → type_specifier identifier_list
+type_specifier → int | float | char | double
+identifier_list → identifier , | identifier assignment_op
+return_statment → return integer_constant ;
+statement → assign_statment | if_statment | while_statment | for_statment |
+printf_statment | return_statment
+if_statment → if ( condition ) { statements } | if ( condition ) { statements } else {
+statements}
+for_statment → for ( type_specifier assign_statment condition ; step_statement ) {
+statements }
+while_statment → while (condition ) {statments}
+step_statement → identifier assignment_op | identifier increment_op | identifier
+decrement _op
+printf_statment → printf(string_literal , argument_list) ;
+string_literal → string_constant
+argument_list → expression | expression , expression
+assignment_statement → identifier assignment_op expression ;
+expression → term rest0
+rest0 → +term rest0 |-term rest0 |empty
+term → factor rest1
+rest1 → *factor rest1|/factor rest1|empty
+factor → id | digit | (expr)
+integer_constant → 0 | … | 9
+identifier → a |…|z|A|…..|Z
+
