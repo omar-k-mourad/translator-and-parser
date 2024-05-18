@@ -1,0 +1,5 @@
+Overall Purpose:
+The code processes a C program by removing comments, tokenizing the code,
+translating it into Python, and then parsing the tokens to build a syntax tree. The
+output includes the cleaned C code, translated Python code, and a visual
+representation of the syntax tree.
